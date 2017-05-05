@@ -8,13 +8,19 @@ const ducks = (state = initialState, action) => {
 
   switch (action.type) {
     case 'ADD_DUCK':
-      const addState = Object.assign({}, state);
-      addState.duckRow.push(aDuck);
-      return addState;
+      const addList = state.duckRow.slice();
+      addList.push(aDuck);
+      return {
+        ...state,
+        duckRow: addList
+      };
     case 'REMOVE_DUCK':
-      const removeState = Object.assign({}, state);
-      removeState.duckRow.pop();
-      return removeState;
+      const removeList = state.duckRow.slice();
+      removeList.pop();
+      return {
+        ...state,
+        duckRow: removeList
+      };
     default:
       return state
   }

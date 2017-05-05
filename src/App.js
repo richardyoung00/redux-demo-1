@@ -4,23 +4,31 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addDuck, removeDuck } from './actions/index';
 
-
 class App extends Component {
 
   static propTypes = {
+    duckRow: PropTypes.array,
     onAddClick: PropTypes.func,
     onRemoveClick: PropTypes.func
   };
 
   render() {
+    const {onAddClick, onRemoveClick, duckRow} = this.props;
+
+    let id = 0;
+
     return (
       <div>
+
         <div className="buttons">
-          <button onClick={this.props.onAddClick}>Add duck</button>
-          <button onClick={this.props.onRemoveClick}>Remove duck</button>
+          <button onClick={onAddClick}>Add duck</button>
+          <button onClick={onRemoveClick}>Remove duck</button>
         </div>
+
         <div>
-          {this.props.ducks.duckRow.map((duck) => <img src={duck} alt="a duck"/> )}
+          {duckRow.map(
+            (duck) => <img key={id++} src={duck} alt="a duck"/>
+          )}
         </div>
 
       </div>
@@ -30,7 +38,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ducks: state.ducks,
+    duckRow: state.ducks.duckRow,
   }
 };
 
