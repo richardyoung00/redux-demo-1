@@ -1,0 +1,11 @@
+.buttons {
+  text-align: center;
+  padding: 20px;
+}
+
+.buttons button {
+  font-size: 40px;
+  padding: 10px;
+  width: 300px;
+}
+
