@@ -3,7 +3,7 @@ import './App.css';
 
 // import connect and our actions
 import { connect } from 'react-redux';
-import { addDuck, removeDuck } from './actions/index';
+import { addDuck, removeDuck } from './actions/ducks';
 
 class App extends Component {
 
