@@ -1,4 +1,4 @@
-import aDuck from '../images/duck.png'
+import duckImage from '../images/duck.png'
 
 const initialState = {
   duckRow: []
@@ -7,13 +7,15 @@ const initialState = {
 const ducks = (state = initialState, action) => {
 
   switch (action.type) {
+    // handle add duck action
     case 'ADD_DUCK':
       const addList = state.duckRow.slice();
-      addList.push(aDuck);
+      addList.push(duckImage);
       return {
         ...state,
         duckRow: addList
       };
+    // hand remove duck action
     case 'REMOVE_DUCK':
       const removeList = state.duckRow.slice();
       removeList.pop();

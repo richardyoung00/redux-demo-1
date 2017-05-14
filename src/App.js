@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
-import PropTypes from 'prop-types';
+
+// import connect and our actions
 import { connect } from 'react-redux';
 import { addDuck, removeDuck } from './actions/index';
 
 class App extends Component {
 
-  static propTypes = {
-    duckRow: PropTypes.array,
-    onAddClick: PropTypes.func,
-    onRemoveClick: PropTypes.func
-  };
-
   render() {
+    // get variables from props
     const {onAddClick, onRemoveClick, duckRow} = this.props;
-
-    let id = 0;
 
     return (
       <div>
 
+        <h1 className="header">A row of ducks</h1>
+
+        {/* render some buttons */}
         <div className="buttons">
           <button onClick={onAddClick}>Add duck</button>
           <button onClick={onRemoveClick}>Remove duck</button>
         </div>
 
+         {/* render list of ducks */}
         <div>
           {duckRow.map(
-            (duck) => <img key={id++} src={duck} alt="a duck"/>
+            (duck, index) => <img key={index} src={duck} alt="a duck"/>
           )}
         </div>
 
@@ -36,12 +34,14 @@ class App extends Component {
   }
 }
 
+// maps state to props
 const mapStateToProps = (state) => {
   return {
     duckRow: state.ducks.duckRow,
   }
 };
 
+// map dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddClick: () => {
@@ -53,6 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
+// connect our component to redux state
 App = connect(
   mapStateToProps,
   mapDispatchToProps
